@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>20200104-springcloud-ribbo-custom</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>20200104-springcloud-eureka-managment</module>
+        <module>20200104-springcloud-consumer-managment</module>
+        <module>20200104-springcloud-provider-managment</module>
+        <module>20200104-springcloud-managment</module>
+        <module>20200104-springcloud-zuul-management</module>
+        <module>20200104-springcloud-zipkin-management</module>
+        <module>20200104-springcloud-config-management</module>
+        <module>20200104-springcloud-config-client-managment</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.1.8.RELEASE</version>
+                <type>pom</type><!-- 标识了这个jar包的类型，只管理jar包，没有任何的代码(顶级项目) -->
+                <scope>import</scope><!-- 标识了该jar包什么的时候会被加载 runtime:当项目运行的时候该jar包才会被加载，test:当使用junit测试的时候该jar包才会被加载 -->
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.0.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.31</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-server</artifactId>
+                <version>2.11.8</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-slf4j-impl</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-ui</artifactId>
+                <version>2.11.8</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
